@@ -45,6 +45,11 @@ pipeline {
                 }
             }
         }
+        stage('Test K8s Access') {
+             steps {
+                 sh 'kubectl get pods -A'
+           }
+        }
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'kubectl apply -f deployment.yml'
