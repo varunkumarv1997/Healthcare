@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: healthcare-container
-        image: myimg1
+        image: varunv25/myimg1:latest  
         ports:
         - containerPort: 8082
 ---
