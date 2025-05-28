@@ -45,15 +45,12 @@ pipeline {
                 }
             }
         }
-        stage('Test K8s Access') {
-             steps {
-                 sh 'kubectl get pods -A'
-           }
-        }
         stage('Deploy to Kubernetes') {
-            steps {
-                sh 'kubectl apply -f deployment.yml'
-            }
+    steps {
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'kubectl apply -f deployment.yml'
         }
+    }
+}
     }
 }
