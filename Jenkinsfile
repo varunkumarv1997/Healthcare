@@ -47,9 +47,8 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
     steps {
-        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
-            echo "$KUBECONFIG_CONTENT" > kubeconfig-temp
-            export KUBECONFIG=kubeconfig-temp
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
+            export KUBECONFIG=$KUBECONFIG_FILE
             sh 'kubectl apply -f deployment.yml'
         }
     }
