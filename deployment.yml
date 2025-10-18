@@ -30,4 +30,4 @@ spec:
       targetPort: 8082
   selector:
     name: deployment
-  type:   
+  type: Node port  
